@@ -12,7 +12,7 @@ import SlideVerifyView from 'react-native-slide-verify-view';
 
 
 // ... props
-
+<SlideVerifyView
 width={50}	// background width
 height={50}	// background height
 sliderLength={50}// slider width and height
@@ -26,5 +26,5 @@ onSuccessCallback={() => {}} // callback when slide to right successful
 onFailCallback={() => {}} // fail callback 
 defaultSliderPic={require('../res/ic_slider.png')}// slider default picture
 defaultVerifySuccessPic={require('../res/ic_verify_success.png')} //picture when slide to right successful 
-
+/>
 ```
