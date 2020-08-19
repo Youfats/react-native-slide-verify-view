@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Author: RaoKui
+ * @Date: 2020-08-19 15:30:52
+-->
 
 # react-native-slide-verify-view
 
@@ -16,6 +21,7 @@ import SlideVerifyView from 'react-native-slide-verify-view';
 width={50}	// background width
 height={50}	// background height
 sliderLength={50}// slider width and height
+sliderHeight={20} // option,if unset ,sliderHeight = sliderLength
 defaultBackgroundColor={'#eaeaea'}	// default background color
 successBackgroundColor={'#0098ff'} // background color when slider to right successful
 permissibleError={10}// allow permissible error 
