@@ -5,19 +5,20 @@ const WIDTH = Dimensions.get('window').width * 2 / 3;
 
 export default class SlideVerifyView extends Component {
   static defaultProps = {
-    width: WIDTH,
-    height: 50,
-    sliderLength: 50,
-    defaultBackgroundColor: '#eaeaea',
-    successBackgroundColor:'#0098ff',
-    permissibleError: 10,
-    defaultText: 'Slide To Verify',
-    successText: 'Validation Passed',
-    sliderDefaultColor:'#ffffff',
-    onSuccessCallback: () => {},
-    onFailCallback: () => {},
-    defaultSliderPic: require('../res/ic_slider.png'),
-    defaultVerifySuccessPic: require('../res/ic_verify_success.png'),
+    width: WIDTH, // 空间宽度
+    height: 50, // 控件高度
+    sliderLength: 50, // 滑块长度
+    sliderHeight: 0, // 滑块高度，为0的话默认为滑块长度sliderLength
+    defaultBackgroundColor: '#eaeaea', // 默认情况下的背景颜色
+    successBackgroundColor:'#0098ff',// 默认验证成功背景颜色
+    permissibleError: 10,// 允许的误差精度
+    defaultText: 'Slide To Verify', // 默认背景提示文字
+    successText: 'Validation Passed', //  默认验证成功背景提示文字
+    sliderDefaultColor:'#ffffff', // 滑块默认颜色
+    onSuccessCallback: () => {}, // 验证成功回调
+    onFailCallback: () => {}, // 验证失败回调
+    defaultSliderPic: require('../res/ic_slider.png'), // 默认滑块图片
+    defaultVerifySuccessPic: require('../res/ic_verify_success.png'), // 验证成功滑块图片
 
   }
 
@@ -71,8 +72,10 @@ export default class SlideVerifyView extends Component {
   }
 
   render() {
-    let { width, height, sliderLength, successText, sliderDefaultColor, defaultText,defaultSliderPic, defaultVerifySuccessPic } = this.props;
+    let { width, height, sliderLength, sliderHeight, successText, sliderDefaultColor, defaultText,defaultSliderPic, defaultVerifySuccessPic } = this.props;
     let picLength = sliderLength * 3 /5;// 滑块里面的图片大小
+    let sliderHei = sliderHeight === 0 ? sliderLength: sliderHeight; 
+    let top = (height - sliderHei) / 2;
     return (
       <View style={[styles.slideBackgroundView, { width: width, height: height, backgroundColor: this.configBackgroundColor(),}]}>
         {this.state.isSuccess ? (
@@ -85,7 +88,7 @@ export default class SlideVerifyView extends Component {
           </View>
         )}
         <View
-          style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: sliderDefaultColor, position: 'absolute', left: this.state.left, top: 0, height: sliderLength, width: sliderLength, transform: [{ translateX: this.state.left }], borderWidth: 1, borderColor: '#eaeaea', }}
+          style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: sliderDefaultColor, position: 'absolute', left: this.state.left, top: top, height: sliderHei, width: sliderLength, transform: [{ translateX: this.state.left }], borderWidth: 1, borderColor: '#eaeaea', }}
           {...this.panResponder.panHandlers}
         >
           <Image 
